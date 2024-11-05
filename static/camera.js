@@ -36,7 +36,7 @@ function capture() {
 
   let imageSize = (dataURL.length * 3) / 4 / 1024; // Calculate image size in KB
 
-  if (imageSize > 100) {
+  if (imageSize > 250) {
     compressAndCheckImage();
     return;
   }
@@ -53,13 +53,13 @@ function compressAndCheckImage() {
 
   let imageSize = (compressedDataURL.length * 3) / 4 / 1024;
 
-  while (imageSize > 100 && quality > 0.2) {
+  while (imageSize > 250 && quality > 0.2) {
     quality -= 0.1; // Decrease quality to compress more
     compressedDataURL = compressImage(canvas, quality);
     imageSize = (compressedDataURL.length * 3) / 4 / 1024;
   }
 
-  if (imageSize > 100) {
+  if (imageSize > 250) {
     alert("The image is still too large after compression. Please try again.");
     return;
   }
@@ -78,8 +78,8 @@ function compressImage(canvas, quality) {
 function uploadFile() {
   let file = document.getElementById("file-input").files[0];
   if (file) {
-    if (file.size > 100 * 1024) {
-      alert("The image is too large. Please upload an image under 100KB.");
+    if (file.size > 250 * 1024) {
+      alert("The image is too large. Please upload an image under 250KB.");
       return;
     }
 
